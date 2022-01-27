@@ -204,109 +204,39 @@ namespace IotLoRaNode {
 
     }
 
-    //%blockId="IotLoRaNode_InitialiseRadioOTAA" block="Initialise LoRa Radio via OTAA:|Device Eui %deveui|App EUI %appeui|App Key %appkey" advanced=true
+    //%blockId="Initialisiere_LoRa" block="Initialise LoRa:|App Key %appkey" advanced=true
     //% blockGap=8
-    export function InitialiseRadioOTAA(deveui: string, appeui: string, appkey: string): void {
-        /**
-        * First we need to configure the serial port to use the pins and reset the radio
-        */
-        //serial.writeString("Test Serial\r\n");
-        //pins.digitalWritePin(DigitalPin.P0, 1)
-        //basic.pause(300)
-        //pins.digitalWritePin(DigitalPin.P0, 0)
-        //serial.readLine()
-        //serial.readLine()
-        //serial.readLine()
-
-        //basic.showNumber(0)
-
-        /**
-         * For this we are only going to use ABP & LoRa WAN Modes for now
-         */
-
-        //basic.showNumber(1)
+    export function Initialisiere_LoRa(appkey: string): void {
+          
         basic.pause(75)
-        //Set to use LoRaWAN Mode
         serial.writeString("AT+MODE=LWOTAA\r\n");
         serial.readLine()
 
-        //basic.showNumber(1)
         basic.pause(75)
-        //Set to use LoRaWAN Mode
         serial.writeString("AT+DR=EU868\r\n");
         serial.readLine()
 
-        //basic.showNumber(1)
         basic.pause(75)
-        //Set to use LoRaWAN Mode
         serial.writeString("AT+CH=NUM,0-2\r\n");
         serial.readLine()
 
-        //basic.showNumber(2)
-        //basic.pause(75)
-        //Set Device Address
-        //serial.writeString("at+set_config=lora:dev_eui:" + deveui + "\r\n");
-        //serial.readLine()
-
-        //basic.showNumber(3)
-        //basic.pause(75)
-        //Set the network session key
-        //serial.writeString("at+set_config=lora:app_eui:" + appeui + "\r\n");
-        //serial.readLine()
-
-        //basic.showNumber(4)
         basic.pause(75)
-        //Set the application session key
         serial.writeString("AT+KEY=APPKEY," + appkey + "\r\n");
         serial.readLine()
 
-        //basic.showNumber(4)
         basic.pause(75)
-        //Set the application session key
         serial.writeString("AT+CLASS=C\r\n");
         serial.readLine()
 
-        //basic.showNumber(4)
         basic.pause(75)
-        //Set the application session key
         serial.writeString("AT+PORT=8\r\n");
         serial.readLine()
 
-        //basic.showNumber(4)
-        //basic.pause(75)
-        //Set the application session key
-        //serial.writeString("at+set_config=lora:ch_mask:10:0\r\n");
-        //serial.readLine()
-
-        //basic.showNumber(4)
-        //basic.pause(75)
-        //Set the application session key
-        //serial.writeString("at+set_config=lora:ch_mask:11:0\r\n");
-        //serial.readLine()
-
-        //basic.showNumber(4)
-        //basic.pause(75)
-        //Set the application session key
-        //serial.writeString("at+set_config=lora:ch_mask:12:0\r\n");
-        //serial.readLine()
-
-
-        /*
         basic.pause(75)
-        //Set the data rate
-        serial.writeString("at+set_config=dr:0\r\n");
-        serial.readLine()
-        */
-        //basic.showNumber(6)
-        basic.pause(75)
-        //"Join" the LoRaWAN Network in ABP Mode
         serial.writeString("AT+JOIN\r\n");
         serial.readLine()
 
-        //Display on the screen that LoRa is ready.
         basic.showString("LoRa Ready")
-
-
     }
 
 
